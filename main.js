@@ -1,4 +1,5 @@
 const myLibrary = []; // ! array of books
+console.log(myLibrary);
 
 // ! Book Object !
 class Book {
@@ -22,25 +23,25 @@ let removeBookFromLibrary = (book) => {
 
 // ** Default books **
 
-let theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
+let percyJackson = new Book(
+  "Percy Jackson and the Lightning Thief",
+  "Rick Riordan",
+  377,
+  true
+);
 
 let harryPotter = new Book(
   "Harry Potter and The Philospher's Stone",
   "J.K. Rowling",
   223,
-  false
-);
-
-let theLordOfTheRings = new Book(
-  "The Lord of the Rings",
-  "J.R.R. Tolkien",
-  450,
   true
 );
 
-addBookToLibrary(theHobbit);
+let warAndPeace = new Book("War and Peace", "Leo Tolstoy", 1225, false);
+
 addBookToLibrary(harryPotter);
-addBookToLibrary(theLordOfTheRings);
+addBookToLibrary(percyJackson);
+addBookToLibrary(warAndPeace);
 
 // ! The following code is for the UI !
 
@@ -59,6 +60,7 @@ const createCard = (book) => {
   const pages = createDOMElement("p");
   const read = createDOMElement("button");
   const remove = createDOMElement("button");
+  const trash = createDOMElement("i"); // trash icon
   const card = document.createElement("div");
 
   card.classList.add("card");
@@ -66,13 +68,22 @@ const createCard = (book) => {
   card.append(title, author, pages, read, remove);
   container.appendChild(card);
 
-  title.innerText = `Title: ${book.title}`;
-  author.innerText = `Author: ${book.author}`;
-  pages.innerText = `Pages: ${book.pages}`;
+  title.innerText = book.title;
+  title.classList.add("title");
+
+  author.innerText = book.author;
+  author.classList.add("author");
+
+  pages.innerText = `${book.pages} pages`;
 
   read.innerText = `${book.read === true ? "Read" : "Not Read"}`;
+  book.read
+    ? read.classList.add("green") && read.classList.remove("red")
+    : read.classList.add("red") && read.classList.remove("green");
 
-  remove.innerText = "Remove";
+  trash.classList.add("fa-regular", "fa-trash-can");
+  remove.appendChild(trash);
+  remove.classList.add("remove");
 
   remove.addEventListener("click", () => {
     removeBookFromLibrary(book);
@@ -83,9 +94,13 @@ const createCard = (book) => {
     if (book.read) {
       book.read = false;
       read.innerText = "Not Read";
+      read.classList.add("red");
+      read.classList.remove("green");
     } else {
       book.read = true;
       read.innerText = "Read";
+      read.classList.add("green");
+      read.classList.remove("red");
     }
   });
 };
@@ -96,15 +111,40 @@ myLibrary.forEach((book) => {
   createCard(book);
 });
 
+// ! Form Variables !
+const formContainer = document.querySelector(".form-container");
+const form = formContainer.firstElementChild;
+const submit = form.querySelector(".green");
+const cancel = form.querySelector(".red");
+const title = form.querySelector("#title");
+const author = form.querySelector("#author");
+const pages = form.querySelector("#pages");
+const read = form.querySelector("#read");
+
 // ? Add Book Button ?
-
+console.log(cancel);
 addBook.addEventListener("click", () => {
-  let userBook = new Book();
+  formContainer.classList.remove("inactive");
+});
 
-  userBook.title = prompt("The title of the book");
-  userBook.author = prompt("The author of the book");
-  userBook.pages = parseInt(prompt("The number of pages in the book"));
-  userBook.read = confirm("Have you read the book?");
+// ? Submit Button ?
+submit.addEventListener("click", () => {
+  let userBook = new Book();
+  userBook.title = title.value;
+  userBook.author = author.value;
+  userBook.pages = parseInt(pages.value);
+  userBook.read = read.checked;
+
+  title.value = null;
+  author.value = null;
+  pages.value = null;
+  read.checked = false;
 
   createCard(userBook);
+  formContainer.classList.add("inactive");
+});
+
+// ? Cancel Button ?
+cancel.addEventListener("click", () => {
+  formContainer.classList.add("inactive");
 });
