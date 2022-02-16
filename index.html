@@ -3,15 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="./main.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
   <body>
     <main>
-      <button class="add-book">Add Book</button>
+      <h1><i class="fa-solid fa-book-open-reader"></i> Library</h1>
+      <button class="add-book">+ Add Book</button>
       <div class="container">
         <!-- card will be rendered here -->
       </div>
     </main>
+    <div class="form-container inactive">
+      <div class="form">
+        <div class="form-group">
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Title"
+            value=""
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="author"
+            id="author"
+            placeholder="Author"
+            value=""
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="number"
+            name="pages"
+            id="pages"
+            placeholder="Pages"
+            value=""
+          />
+        </div>
+        <div class="form-group">
+          <input type="checkbox" name="read" id="read" />
+          <label for="read">Have you read this book?</label>
+        </div>
+        <div class="form-group">
+          <button class="red">Cancel</button>
+          <button class="green">Submit</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
