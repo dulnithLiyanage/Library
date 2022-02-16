@@ -1,4 +1,4 @@
-const myLibrary = []; // ! array of books
+const myLibrary = JSON.parse(localStorage.getItem("myLibrary")) ?? []; // ! array of books
 console.log(myLibrary);
 
 // ! Book Object !
@@ -23,25 +23,25 @@ let removeBookFromLibrary = (book) => {
 
 // ** Default books **
 
-let percyJackson = new Book(
-  "Percy Jackson and the Lightning Thief",
-  "Rick Riordan",
-  377,
-  true
-);
+// let percyJackson = new Book(
+//   "Percy Jackson and the Lightning Thief",
+//   "Rick Riordan",
+//   377,
+//   true
+// );
 
-let harryPotter = new Book(
-  "Harry Potter and The Philospher's Stone",
-  "J.K. Rowling",
-  223,
-  true
-);
+// let harryPotter = new Book(
+//   "Harry Potter and The Philospher's Stone",
+//   "J.K. Rowling",
+//   223,
+//   true
+// );
 
-let warAndPeace = new Book("War and Peace", "Leo Tolstoy", 1225, false);
+// let warAndPeace = new Book("War and Peace", "Leo Tolstoy", 1225, false);
 
-addBookToLibrary(harryPotter);
-addBookToLibrary(percyJackson);
-addBookToLibrary(warAndPeace);
+// addBookToLibrary(harryPotter);
+// addBookToLibrary(percyJackson);
+// addBookToLibrary(warAndPeace);
 
 // ! The following code is for the UI !
 
@@ -87,6 +87,8 @@ const createCard = (book) => {
 
   remove.addEventListener("click", () => {
     removeBookFromLibrary(book);
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+
     card.remove();
   });
 
@@ -135,12 +137,15 @@ submit.addEventListener("click", () => {
   userBook.pages = parseInt(pages.value);
   userBook.read = read.checked;
 
+  addBookToLibrary(userBook);
+  createCard(userBook);
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+
   title.value = null;
   author.value = null;
   pages.value = null;
   read.checked = false;
 
-  createCard(userBook);
   formContainer.classList.add("inactive");
 });
 
