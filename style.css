@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+:root {
+  --blue: #33358faa;
+  --lighter-blue: #33358fcc;
+  --red: #e71b1b44;
+  --lighter-red: #e71b1b55;
+  --green: #48ff6055;
+  --lighter-green: #48ff6077;
+  --gray: #55555544;
+  --gray-darker: #55555566;
+
+  --font-primary: #0f1c44ee;
+  --font-secondary: #0f1c44;
+  --font-body: "Montserrat", sans-serif;
+  --font-title: "Marcellus SC", sans-serif;
+  --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  box-sizing: border-box;
+  background-color: #f0eef1;
+}
+
+button {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 500;
+  border: 0;
+  border-radius: 5px;
+  padding: 0.75em 1em;
+  margin: 1em 0.5em 1em 0;
+  color: var(--font-secondary);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button.remove {
+  background-color: var(--gray);
+}
+
+button.remove:hover {
+  background-color: var(--gray-darker);
+}
+
+button.red {
+  background-color: var(--red);
+}
+
+button.red:hover {
+  background-color: var(--lighter-red);
+}
+
+button.green {
+  background-color: var(--green);
+}
+
+button.green:hover {
+  background-color: var(--lighter-green);
+}
+
+button.add-book {
+  color: whitesmoke;
+  background-color: var(--blue);
+  font-size: 21px;
+  margin: 1em 0 2em 0;
+}
+
+button.add-book:hover {
+  background-color: var(--lighter-blue);
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+main h1 {
+  font-size: 56px;
+  font-weight: 400;
+  margin: 0.5em 0 0.5em 0;
+  font-family: var(--font-title);
+  text-transform: uppercase;
+}
+
+.container {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: minmax(100px, 1fr);
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+  }
+}
+
+.card {
+  border-radius: 5px;
+  padding: 1em;
+  margin: 0.5em;
+  text-align: center;
+  background-color: white;
+  color: var(--font-primary);
+  box-shadow: var(--box-shadow);
+}
+
+.card p {
+  font-size: 22px;
+}
+
+.card .title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.card .author {
+  font-style: italic;
+}
+
+.form-container {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2em;
+  background-color: white;
+  padding: 1.5em 2em;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.form input[type="text"],
+input[type="number"] {
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  padding: 0.5em;
+  margin: 0.5em 0;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  color: var(--font-primary);
+  margin: 1em 0;
+}
+
+.form input[type="text"]::placeholder,
+.form input[type="number"]::placeholder {
+  color: #c5c5c5;
+}
+
+.form input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border: 1px solid var(--font-primary);
+}
+
+.form input[type="checkbox"] {
+  margin-top: 1em;
+}
+
+.form button {
+  margin-top: 2em;
+}
+
+.inactive {
+  display: none;
+}
