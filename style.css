@@ -7,11 +7,12 @@
   --lighter-red: #e71b1b55;
   --green: #48ff6055;
   --lighter-green: #48ff6077;
+  --gray-lighter: #5c5c5cd8;
   --gray: #55555544;
   --gray-darker: #55555566;
 
   --font-primary: #0f1c44ee;
-  --font-secondary: #0f1c44;
+  --font-secondary: #02091d;
   --font-body: "Montserrat", sans-serif;
   --font-title: "Marcellus SC", sans-serif;
   --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -155,7 +156,7 @@ main h1 {
 
 .form input[type="text"],
 input[type="number"] {
-  border: 1px solid var(--gray);
+  border: 1px solid var(--gray-lighter);
   border-radius: 5px;
   padding: 0.5em;
   margin: 0.5em 0;
@@ -168,7 +169,7 @@ input[type="number"] {
 
 .form input[type="text"]::placeholder,
 .form input[type="number"]::placeholder {
-  color: #c5c5c5;
+  color: var(--gray-lighter);
 }
 
 .form input[type="text"]:focus,
